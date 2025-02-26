@@ -7,3 +7,5 @@ psycopg2==2.9.10
 sqlparse==0.5.3
 typing-extensions==4.12.2
 tzdata==2025.1
+tzlocal==4.1
+whitenoise==6.8.2

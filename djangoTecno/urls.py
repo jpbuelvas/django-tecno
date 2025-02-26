@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from employees.views import (
     home, signup, signout, signin,
     EmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView
@@ -35,3 +36,5 @@ urlpatterns = [
     path('employees/<int:pk>/update/', EmployeeUpdateView.as_view(), name='update_employee'),
     path('employees/<int:pk>/delete/', EmployeeDeleteView.as_view(), name='delete_employee'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
