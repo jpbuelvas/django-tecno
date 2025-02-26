@@ -74,7 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoTecno.wsgi.application'
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-tecno-production.up.railway.app",
+]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
