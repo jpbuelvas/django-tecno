@@ -1,14 +1,14 @@
 {
     "builds" : [
         {
-            "src": "<django-tecno>/wsgi.py",
+            "src": "<djangoTecno>/wsgi.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "<django-tecno>/wsgi.py"
+            "dest": "<djangoTecno>/wsgi.py"
         }
     ]
 }
