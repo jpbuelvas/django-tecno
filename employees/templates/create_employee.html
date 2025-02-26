@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <!-- Cabecera similar al editar -->
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title mb-0">
+           Crear Empleado
+          </h3>
+        </div>
+        <div class="card-body">
+          <form action="{% url 'create_employee' %}" method="POST">
+            {% csrf_token %}
+            <!-- Fila 1: Nombre y Cédula -->
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="{{ form.name.id_for_label }}" class="form-label">Nombre</label>
+                  {{ form.name }}
+                  {% if form.name.help_text %}
+                    <small class="form-text text-muted">{{ form.name.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.name.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="{{ form.DNI.id_for_label }}" class="form-label">Cédula</label>
+                  {{ form.DNI }}
+                  {% if form.DNI.help_text %}
+                    <small class="form-text text-muted">{{ form.DNI.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.DNI.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <!-- Fila 2: Fecha de Nacimiento, Correo Electrónico y Número de Teléfono -->
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label for="{{ form.birthdate.id_for_label }}" class="form-label">Fecha de Nacimiento</label>
+                  {{ form.birthdate }}
+                  {% if form.birthdate.help_text %}
+                    <small class="form-text text-muted">{{ form.birthdate.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.birthdate.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label for="{{ form.email.id_for_label }}" class="form-label">Correo Electrónico</label>
+                  {{ form.email }}
+                  {% if form.email.help_text %}
+                    <small class="form-text text-muted">{{ form.email.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.email.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label for="{{ form.phone.id_for_label }}" class="form-label">Número de Teléfono</label>
+                  {{ form.phone }}
+                  {% if form.phone.help_text %}
+                    <small class="form-text text-muted">{{ form.phone.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.phone.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <!-- Botones juntos, alineados a la derecha -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="btn btn-success px-4 me-2">
+                  <i class="bi bi-check-circle"></i> Guardar
+                </button>
+                <a href="{% url 'employees' %}" class="btn btn-outline-secondary px-4">
+                  <i class="bi bi-x-circle"></i> Cancelar
+                </a>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Empleados</h1>
+
+    <!-- Botón Agregar Empleado -->
+    <div class="d-flex justify-content-end mb-5">
+        <a href="{% url 'create_employee' %}" class="btn btn-success">Agregar Empleado</a>
+    </div>
+
+    <!-- Formulario de búsqueda con un solo input -->
+    <form method="GET" class="row g-3 mb-4">
+        <div class="col-md-9">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por Nombre, Cédula, Email o Número de teléfono" value="{{ request.GET.q }}">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-50">Buscar</button>
+        </div>
+    </form>
+
+    <!-- Botones de ordenamiento -->
+    <div class="mb-3">
+        <strong>Ordenar Por:</strong>
+        <a href="?order_by=name" class="btn btn-outline-secondary btn-sm">Nombre</a>
+        <a href="?order_by=DNI" class="btn btn-outline-secondary btn-sm">Cédula</a>
+        <a href="?order_by=email" class="btn btn-outline-secondary btn-sm">Email</a>
+        <a href="?order_by=birthdate" class="btn btn-outline-secondary btn-sm">Fecha de Nacimiento</a>
+    </div>
+
+    <!-- Lista de empleados -->
+    <div class="row">
+        {% for employee in employees %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ employee.name }}</h5>
+                    <p class="card-text"><strong>Cédula:</strong> {{ employee.DNI }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ employee.email }}</p>
+                    <p class="card-text"><strong>Número de teléfono:</strong> {{ employee.phone }}</p>
+                    <p class="card-text"><strong>Fecha de Nacimiento:</strong> {{ employee.birthdate|date:'M j Y' }}</p>
+                    <a href="{% url 'employee_detail' employee.id %}" class="btn btn-dark btn-sm ">Ir a detalles</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Empleados no encontrados.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

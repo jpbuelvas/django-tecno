@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Encabezado -->
+      <div class="text-center mb-4">
+        <h1 class="display-5 mb-3 text-primary">{{ employee.name }}</h1>
+        <p class="text-muted">Detalles de empleado</p>
+      </div>
+
+      <!-- Tarjeta de detalles -->
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title mb-0">
+            <i class="bi bi-person-badge"></i> Información del Empleado
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-3">
+                <strong>Cédula:</strong>
+                <span class="text-muted">{{ employee.DNI }}</span>
+              </p>
+              <p class="mb-3">
+                <strong>Fecha de Nacimiento:</strong>
+                <span class="text-muted"
+                  >{{ employee.birthdate|date:"Y-m-d" }}</span
+                >
+              </p>
+              <p class="mb-3">
+                <strong>Email:</strong>
+                <span class="text-muted">{{ employee.email }}</span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-3">
+                <strong>Número de teléfono:</strong>
+                <span class="text-muted">{{ employee.phone }}</span>
+              </p>
+              <p class="mb-3">
+                <strong>Fecha de creación:</strong>
+                <span class="text-muted"
+                  >{{ employee.created|date:"Y-m-d H:i" }}</span
+                >
+              </p>
+              <p class="mb-3">
+                <strong>Creado por:</strong>
+                <span class="text-muted">{{ employee.user.username }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de acción CORREGIDOS -->
+      <!-- Botones de acción CORREGIDOS -->
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'employees' %}" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left"></i> Volver
+        </a>
+        <div>
+          <!-- Enlace corregido para edición -->
+          <a
+            href="{% url 'update_employee' employee.id %}"
+            class="btn btn-primary"
+          >
+            <i class="bi bi-pencil"></i> Editar
+          </a>
+          <a
+            href="{% url 'delete_employee' employee.id %}"
+            class="btn btn-danger"
+          >
+            <i class="bi bi-trash"></i> Eliminar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>
