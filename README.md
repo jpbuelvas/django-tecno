@@ -46,5 +46,58 @@ Si prefieres utilizar las credenciales de ejemplo (reemplaza estos valores por l
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/tu_usuario/tecnoempleados.git
-   cd tecnoempleados
+   git clone https://github.com/jpbuelvas/django-tecno
+   cd django-tecno
+2. **Crea y activa un entorno virtual:**
+
+    ```bash
+    python -m venv venv
+    # En Linux/Mac:
+    source venv/bin/activate
+    # En Windows:
+    venv\Scripts\activate
+
+3. **Instala las dependencias:**
+
+    ```bash
+    pip install -r requirements.txt
+
+4. **Aplica las migraciones:**
+
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+
+5. **Crea un superusuario (opcional):**
+
+    ```bash
+    python manage.py createsuperuser
+
+6. **Inicia el servidor de desarrollo:**
+
+    ```bash
+    python manage.py runserver
+
+## Uso con Docker de Acceso
+
+Si prefieres usar Docker para ejecutar la aplicación, asegúrate de tener Docker instalado y ejecuta los siguientes comandos:
+
+1. **Construir la imagen:**
+
+    ```bash
+    docker build -t nombre_de_tu_imagen .
+
+2. **Ejecutar el contenedor:**
+    ```bash
+    docker run -d -p 8000:8000 nombre_de_tu_imagen
+
+La aplicación estará disponible en http://localhost:8000.
+
+## Estructura del Proyecto
+
+- **employees/: Contiene el modelo de empleados, vistas, formularios y templates específicos para la gestión de empleados.** 
+- **templates/: Plantillas HTML basadas en Bootstrap para todas las vistas (home, login, registro, listado, creación y edición de empleados).** 
+- **Dockerfile: Archivo de configuración para construir la imagen Docker.** 
+- **requirements.txt: Lista de dependencias del proyecto.** 
+- **README.md: Este archivo.** 
+
